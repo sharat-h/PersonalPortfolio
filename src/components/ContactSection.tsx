@@ -2,7 +2,6 @@
 
 import React, { useState, useEffect } from "react";
 import {
-  Mail,
   ArrowUpRight,
   Copy,
   Check,
@@ -12,14 +11,13 @@ import {
   MapPin,
   Clock,
   Phone,
-  Bot,
 } from "lucide-react";
 
 export default function ContactSection() {
   const [copied, setCopied] = useState(false);
   const [copiedPhone, setCopiedPhone] = useState(false);
   const [currentTime, setCurrentTime] = useState("");
-  const [formSubmitted, setFormSubmitted] = useState(false);
+  const [emailDraftOpened, setEmailDraftOpened] = useState(false);
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -44,26 +42,32 @@ export default function ContactSection() {
     return () => clearInterval(interval);
   }, []);
 
-  const handleCopyEmail = () => {
-    navigator.clipboard.writeText("sharathanku2005@gmail.com");
-    setCopied(true);
-    setTimeout(() => setCopied(false), 2500);
+  const handleCopyEmail = async () => {
+    try {
+      await navigator.clipboard.writeText("sharathanku2005@gmail.com");
+      setCopied(true);
+      window.setTimeout(() => setCopied(false), 2500);
+    } catch {
+      window.location.href = "mailto:sharathanku2005@gmail.com";
+    }
   };
 
-  const handleCopyPhone = () => {
-    navigator.clipboard.writeText("+91 9538628609");
-    setCopiedPhone(true);
-    setTimeout(() => setCopiedPhone(false), 2500);
+  const handleCopyPhone = async () => {
+    try {
+      await navigator.clipboard.writeText("+91 9538628609");
+      setCopiedPhone(true);
+      window.setTimeout(() => setCopiedPhone(false), 2500);
+    } catch {
+      window.location.href = "tel:+919538628609";
+    }
   };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (!formData.name || !formData.email) return;
-    setFormSubmitted(true);
-    setTimeout(() => {
-      setFormSubmitted(false);
-      setFormData({ name: "", email: "", message: "" });
-    }, 4000);
+    const subject = `Portfolio inquiry from ${formData.name.trim()}`;
+    const body = `${formData.message.trim()}\n\nFrom: ${formData.name.trim()} (${formData.email.trim()})`;
+    window.location.href = `mailto:sharathanku2005@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    setEmailDraftOpened(true);
   };
 
   const scrollToTop = () => {
@@ -89,7 +93,7 @@ export default function ContactSection() {
           </div>
 
           <h2 className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-bold tracking-tighter text-white uppercase leading-none">
-            Let's build <br />
+            Let&apos;s build <br />
             <span className="text-gradient-accent">intelligent software.</span>
           </h2>
 
@@ -198,7 +202,7 @@ export default function ContactSection() {
             {/* Social Network Links */}
             <div>
               <span className="text-xs font-mono text-white/40 uppercase tracking-widest block mb-4">
-                Verified Profiles
+                Project Link
               </span>
               <div className="flex flex-wrap gap-2.5">
                 {[
@@ -207,8 +211,6 @@ export default function ContactSection() {
                     href: "https://prepbotvk.netlify.app/",
                     highlight: true,
                   },
-                  { name: "LinkedIn", href: "https://linkedin.com" },
-                  { name: "GitHub", href: "https://github.com" },
                 ].map((s) => (
                   <a
                     key={s.name}
@@ -239,26 +241,27 @@ export default function ContactSection() {
                 Direct transmission • Quick response
               </p>
 
-              {formSubmitted ? (
+              {emailDraftOpened ? (
                 <div className="py-12 flex flex-col items-center justify-center text-center">
                   <div className="w-12 h-12 rounded-full bg-emerald-500/20 border border-emerald-400/40 flex items-center justify-center text-emerald-400 mb-3">
                     <Check className="w-6 h-6" />
                   </div>
                   <h4 className="text-lg font-bold text-white">
-                    Message Dispatched
+                    Email Draft Ready
                   </h4>
                   <p className="text-xs text-white/60 mt-1 max-w-sm">
-                    Thank you. Your message has been noted. I'll get back to you shortly at {formData.email}.
+                    Your email app should open with your message addressed to Sharathkumar. Review and send the draft there.
                   </p>
                 </div>
               ) : (
                 <form onSubmit={handleSubmit} className="space-y-4">
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div>
-                      <label className="text-[11px] font-mono text-white/60 block mb-1 uppercase tracking-wider">
+                      <label htmlFor="contact-name" className="text-[11px] font-mono text-white/60 block mb-1 uppercase tracking-wider">
                         Your Name
                       </label>
                       <input
+                        id="contact-name"
                         type="text"
                         required
                         value={formData.name}
@@ -270,10 +273,11 @@ export default function ContactSection() {
                       />
                     </div>
                     <div>
-                      <label className="text-[11px] font-mono text-white/60 block mb-1 uppercase tracking-wider">
+                      <label htmlFor="contact-email" className="text-[11px] font-mono text-white/60 block mb-1 uppercase tracking-wider">
                         Your Email
                       </label>
                       <input
+                        id="contact-email"
                         type="email"
                         required
                         value={formData.email}
@@ -287,10 +291,11 @@ export default function ContactSection() {
                   </div>
 
                   <div>
-                    <label className="text-[11px] font-mono text-white/60 block mb-1 uppercase tracking-wider">
+                    <label htmlFor="contact-message" className="text-[11px] font-mono text-white/60 block mb-1 uppercase tracking-wider">
                       Subject / Project Scope
                     </label>
                     <textarea
+                      id="contact-message"
                       rows={4}
                       required
                       value={formData.message}
@@ -307,7 +312,7 @@ export default function ContactSection() {
                     className="w-full inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-cyan-400 hover:bg-cyan-300 text-[#080d0e] font-bold text-xs tracking-wider uppercase transition-all shadow-[0_0_20px_rgba(56,189,248,0.3)] cursor-pointer"
                   >
                     <Send className="w-3.5 h-3.5" />
-                    <span>Send Message</span>
+                    <span>Open Email Draft</span>
                   </button>
                 </form>
               )}
@@ -318,7 +323,7 @@ export default function ContactSection() {
         {/* Bottom Credits & Back to Top */}
         <div className="pt-8 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-mono text-white/40">
           <div>
-            © 2026 Sharathkumar K M • BMSIT&M AIML • Built with Next.js 14 & Framer Motion.
+            © 2026 Sharathkumar K M • BMSIT&M AIML • Built with Next.js 16 & Framer Motion.
           </div>
           <button
             onClick={scrollToTop}

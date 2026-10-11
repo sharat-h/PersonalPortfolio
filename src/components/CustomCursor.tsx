@@ -12,7 +12,10 @@ export default function CustomCursor() {
 
   useEffect(() => {
     // Only enable on desktop pointer devices
-    if (window.matchMedia("(pointer: coarse)").matches) return;
+    if (
+      window.matchMedia("(pointer: coarse)").matches ||
+      window.matchMedia("(prefers-reduced-motion: reduce)").matches
+    ) return;
 
     const handleMouseMove = (e: MouseEvent) => {
       cursorX.set(e.clientX);
@@ -44,6 +47,7 @@ export default function CustomCursor() {
         translateY: "-50%",
       }}
       className="fixed top-0 left-0 pointer-events-none z-50 hidden md:block"
+      aria-hidden="true"
     >
       <div className="w-8 h-8 rounded-full border border-cyan-400/40 bg-cyan-400/10 backdrop-blur-[1px] transition-transform duration-100 shadow-[0_0_20px_rgba(56,189,248,0.2)] flex items-center justify-center">
         <div className="w-1.5 h-1.5 rounded-full bg-cyan-300" />

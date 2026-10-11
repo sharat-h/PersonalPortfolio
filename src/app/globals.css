@@ -12,12 +12,13 @@ html {
   scroll-behavior: smooth;
   background-color: var(--bg-dark);
   color-scheme: dark;
+  overflow-x: clip;
 }
 
 body {
   background-color: var(--bg-dark);
   color: #e5eef0;
-  overflow-x: hidden;
+  overflow-x: clip;
   font-feature-settings: "cv02", "cv03", "cv04", "cv11";
 }
 

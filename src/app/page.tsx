@@ -9,45 +9,27 @@ import CustomCursor from "@/components/CustomCursor";
 
 export default function Home() {
   return (
-    <main className="relative bg-[#080d0e] min-h-screen text-[#e5eef0] overflow-x-hidden selection:bg-cyan-500/20 selection:text-cyan-200">
+    <div className="relative bg-[#080d0e] min-h-screen text-[#e5eef0] selection:bg-cyan-500/20 selection:text-cyan-200">
       {/* Subtle Custom Cursor for desktop */}
       <CustomCursor />
 
       {/* Floating Glassmorphic Navbar */}
       <Navbar />
 
-      {/* 
-        COMPONENT 1: THE STICKY SCROLLER & CANVAS SCRUBBER 
-        (320vh responsive container + sticky viewport canvas + preloading + portrait-aware framing)
-        Contains Component 2: The Parallax Overlay on top of the canvas
-      */}
-      <ScrollyCanvas />
+      <main className="relative min-h-screen selection:bg-cyan-500/20 selection:text-cyan-200">
+        {/* Sticky scroller and canvas scrubber with parallax overlays. */}
+        <ScrollyCanvas />
 
-      {/* 
-        BRIDGE & PROFESSIONAL SUMMARY: ABOUT & 3 PILLARS
-        Connects the scroll sequence smoothly to Case Studies with an infinite kinetic marquee,
-        bio, 3 pillars of expertise, and Flinders AI hackathon credentials.
-      */}
-      <AboutSection />
+        <AboutSection />
 
-      {/* 
-        COMPONENT 3: THE WORK GRID
-        Glass-morphism cards, interactive case studies modal, and telemetry tags
-        Spotlight #1: PrepBot (prepbotvk.netlify.app)
-      */}
-      <Projects />
+        <Projects />
 
-      {/* 
-        BENTO GRID: ENGINEERING ARSENAL & CREDENTIALS
-        Education at BMSIT&M (7.67 CGPA), Verified Certifications, real-time math wave simulation
-      */}
-      <TechStack />
+        <TechStack />
 
-      {/* 
-        CINEMATIC FOOTER & CONTACT
-        Direct mail quick-copy, telephone, live IST timezone, inquiry form, and back-to-top
-      */}
+      </main>
+
+      {/* Contact footer sits outside the main-content landmark. */}
       <ContactSection />
-    </main>
+    </div>
   );
 }

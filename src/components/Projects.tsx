@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   ExternalLink,
@@ -10,8 +10,6 @@ import {
   CheckCircle2,
   Bot,
   Trophy,
-  Brain,
-  Layers,
 } from "lucide-react";
 
 function GithubIcon({ className = "w-4 h-4" }: { className?: string }) {
@@ -39,8 +37,8 @@ interface Project {
   features: string[];
   metrics: { label: string; value: string }[];
   accentGradient: string;
-  demoUrl: string;
-  githubUrl: string;
+  demoUrl?: string;
+  githubUrl?: string;
   featured: boolean;
   highlightLabel?: string;
 }
@@ -78,7 +76,6 @@ const PROJECTS_DATA: Project[] = [
     ],
     accentGradient: "from-cyan-500/30 via-teal-500/15 to-transparent",
     demoUrl: "https://prepbotvk.netlify.app/",
-    githubUrl: "https://github.com",
     featured: true,
   },
   {
@@ -110,8 +107,6 @@ const PROJECTS_DATA: Project[] = [
       { label: "Core API", value: "Groq LLM" },
     ],
     accentGradient: "from-amber-500/25 via-yellow-500/10 to-transparent",
-    demoUrl: "https://prepbotvk.netlify.app/",
-    githubUrl: "https://github.com",
     featured: true,
   },
   {
@@ -142,18 +137,16 @@ const PROJECTS_DATA: Project[] = [
       { label: "Domain", value: "E-Commerce NLP" },
     ],
     accentGradient: "from-emerald-500/20 via-teal-500/10 to-transparent",
-    demoUrl: "https://prepbotvk.netlify.app/",
-    githubUrl: "https://github.com",
     featured: true,
   },
   {
     id: "portfolio-scrollytelling",
     title: "Kinetic Scrollytelling Experience",
-    tagline: "High-Performance Next.js 14 Canvas Engine",
+    tagline: "High-Performance Next.js Canvas Engine",
     category: "Full-Stack & Creative Dev",
     year: "2026",
     tags: [
-      "Next.js 14",
+      "Next.js 16",
       "HTML5 Canvas",
       "Framer Motion",
       "TypeScript",
@@ -169,13 +162,11 @@ const PROJECTS_DATA: Project[] = [
       "Real-time trigonometry math wave simulation and Bento Grid",
     ],
     metrics: [
-      { label: "Scrub Rate", value: "60 FPS" },
+      { label: "Rendering", value: "HTML5 Canvas" },
       { label: "Sequence", value: "150 Frames" },
-      { label: "Lighthouse", value: "100 / 100" },
+      { label: "Framework", value: "Next.js 16" },
     ],
     accentGradient: "from-purple-500/20 via-indigo-500/10 to-transparent",
-    demoUrl: "https://prepbotvk.netlify.app/",
-    githubUrl: "https://github.com",
     featured: false,
   },
 ];
@@ -191,6 +182,15 @@ const CATEGORIES = [
 export default function Projects() {
   const [activeCategory, setActiveCategory] = useState<string>("All");
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
+
+  useEffect(() => {
+    if (!selectedProject) return;
+    const closeOnEscape = (event: KeyboardEvent) => {
+      if (event.key === "Escape") setSelectedProject(null);
+    };
+    window.addEventListener("keydown", closeOnEscape);
+    return () => window.removeEventListener("keydown", closeOnEscape);
+  }, [selectedProject]);
 
   const filteredProjects =
     activeCategory === "All"
@@ -383,11 +383,15 @@ export default function Projects() {
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.95, y: 20 }}
               transition={{ duration: 0.3 }}
+              role="dialog"
+              aria-modal="true"
+              aria-labelledby="project-dialog-title"
               className="relative w-full max-w-2xl rounded-2xl glass-panel border border-white/20 p-6 sm:p-8 bg-[#0c1315] shadow-2xl z-10 max-h-[90vh] overflow-y-auto"
             >
               {/* Close Button */}
               <button
                 onClick={() => setSelectedProject(null)}
+                aria-label="Close project details"
                 className="absolute top-6 right-6 p-2 rounded-full glass-pill text-white/70 hover:text-white hover:bg-white/10 transition-colors cursor-pointer"
               >
                 <X className="w-4 h-4" />
@@ -398,7 +402,7 @@ export default function Projects() {
                 <span className="text-xs font-mono text-cyan-400 tracking-widest uppercase block mb-1">
                   {selectedProject.category} • {selectedProject.year}
                 </span>
-                <h3 className="text-3xl font-bold text-white tracking-tight">
+                <h3 id="project-dialog-title" className="text-3xl font-bold text-white tracking-tight">
                   {selectedProject.title}
                 </h3>
                 <p className="text-sm font-mono text-white/50 mt-1">
@@ -445,28 +449,33 @@ export default function Projects() {
 
               {/* Action buttons */}
               <div className="flex items-center gap-3 pt-4 border-t border-white/10">
-                <a
-                  href={selectedProject.demoUrl}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="flex-1 inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-cyan-400 hover:bg-cyan-300 text-[#080d0e] font-semibold text-xs tracking-wider uppercase transition-all shadow-[0_0_20px_rgba(56,189,248,0.3)]"
-                >
-                  <ExternalLink className="w-4 h-4" />
-                  <span>
-                    {selectedProject.id === "prepbot"
-                      ? "Open PrepBot (prepbotvk.netlify.app)"
-                      : "Launch Live Demo"}
-                  </span>
-                </a>
-                <a
-                  href={selectedProject.githubUrl}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl glass-pill text-white/80 hover:text-white text-xs font-mono transition-all"
-                >
-                  <GithubIcon className="w-4 h-4" />
-                  <span>GitHub</span>
-                </a>
+                {selectedProject.demoUrl && (
+                  <a
+                    href={selectedProject.demoUrl}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="flex-1 inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-cyan-400 hover:bg-cyan-300 text-[#080d0e] font-semibold text-xs tracking-wider uppercase transition-all shadow-[0_0_20px_rgba(56,189,248,0.3)]"
+                  >
+                    <ExternalLink className="w-4 h-4" />
+                    <span>Open PrepBot Live</span>
+                  </a>
+                )}
+                {selectedProject.githubUrl && (
+                  <a
+                    href={selectedProject.githubUrl}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl glass-pill text-white/80 hover:text-white text-xs font-mono transition-all"
+                  >
+                    <GithubIcon className="w-4 h-4" />
+                    <span>GitHub</span>
+                  </a>
+                )}
+                {!selectedProject.demoUrl && !selectedProject.githubUrl && (
+                  <p className="text-xs text-white/50">
+                    No public demo or source link is available for this project.
+                  </p>
+                )}
               </div>
             </motion.div>
           </div>

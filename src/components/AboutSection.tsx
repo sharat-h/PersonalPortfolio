@@ -1,16 +1,10 @@
-"use client";
-
-import React from "react";
-import { motion } from "framer-motion";
 import {
   Brain,
   Code2,
   Trophy,
-  GraduationCap,
   Sparkles,
   ArrowRight,
   Bot,
-  Terminal,
   Zap,
   ExternalLink,
 } from "lucide-react";
@@ -102,7 +96,7 @@ export default function AboutSection() {
                 Groq API • Context Memory • Prompt Chaining
               </p>
               <p className="mt-3 text-sm text-white/70 font-light leading-relaxed">
-                Architecting conversational applications with sub-second response times. Integrated Groq API to power PrepBot's HR simulations, resume critique, and technical interview modules with active context retention.
+                Architecting conversational applications with sub-second response times. Integrated Groq API to power PrepBot&apos;s HR simulations, resume critique, and technical interview modules with active context retention.
               </p>
             </div>
             <div className="mt-6 pt-4 border-t border-white/5 flex items-center justify-between text-xs font-mono text-white/40">
@@ -143,7 +137,7 @@ export default function AboutSection() {
                 Full-Stack & Web Engineering
               </h3>
               <p className="text-xs text-teal-400 font-mono mt-1 uppercase tracking-wider">
-                Next.js 14 • JavaScript • Netlify • SQL
+                Next.js • JavaScript • Netlify • SQL
               </p>
               <p className="mt-3 text-sm text-white/70 font-light leading-relaxed">
                 Building responsive, tactile interfaces that bridge machine learning models to real users. Experience delivering accessible web applications, state management, and cloud deployments on Netlify and Vercel.

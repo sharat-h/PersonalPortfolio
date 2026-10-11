@@ -42,8 +42,11 @@ export default function ScrollyCanvas({ onLoadProgress }: ScrollyCanvasProps) {
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
 
-    const img = imagesRef.current[frameIndex];
-    if (!img || !img.complete || img.naturalWidth === 0) return;
+    const requestedImage = imagesRef.current[frameIndex];
+    const img = requestedImage?.complete && requestedImage.naturalWidth > 0
+      ? requestedImage
+      : imagesRef.current.find((candidate) => candidate?.complete && candidate.naturalWidth > 0);
+    if (!img) return;
 
     const { width: canvasWidth, height: canvasHeight } = canvas;
     const imgWidth = img.naturalWidth;
@@ -116,8 +119,9 @@ export default function ScrollyCanvas({ onLoadProgress }: ScrollyCanvasProps) {
     let mounted = true;
     const loadedImages: HTMLImageElement[] = new Array(TOTAL_FRAMES);
     let loadedCount = 0;
+    let hasDrawnInitialFrame = false;
 
-    const handleSingleImageLoad = () => {
+    const handleSingleImageLoad = (loadedSuccessfully: boolean) => {
       if (!mounted) return;
       loadedCount += 1;
       const progress = Math.round((loadedCount / TOTAL_FRAMES) * 100);
@@ -125,7 +129,8 @@ export default function ScrollyCanvas({ onLoadProgress }: ScrollyCanvasProps) {
       if (onLoadProgress) onLoadProgress(progress);
 
       // Once the first frame is ready, paint it immediately
-      if (loadedCount === 1) {
+      if (loadedSuccessfully && !hasDrawnInitialFrame) {
+        hasDrawnInitialFrame = true;
         updateCanvasDimensions();
         renderFrame(0);
       }
@@ -139,12 +144,12 @@ export default function ScrollyCanvas({ onLoadProgress }: ScrollyCanvasProps) {
     for (let i = 0; i < TOTAL_FRAMES; i++) {
       const img = new Image();
       const paddedIndex = String(i).padStart(3, "0");
-      img.src = `${FRAME_PREFIX}${paddedIndex}${FRAME_SUFFIX}`;
-      img.onload = handleSingleImageLoad;
+      img.onload = () => handleSingleImageLoad(true);
       img.onerror = () => {
         // Fallback progress increment so UI doesn't hang if a frame drops
-        handleSingleImageLoad();
+        handleSingleImageLoad(false);
       };
+      img.src = `${FRAME_PREFIX}${paddedIndex}${FRAME_SUFFIX}`;
       loadedImages[i] = img;
     }
 
@@ -206,6 +211,7 @@ export default function ScrollyCanvas({ onLoadProgress }: ScrollyCanvasProps) {
         {/* HTML5 Canvas */}
         <canvas
           ref={canvasRef}
+          aria-hidden="true"
           className="absolute inset-0 w-full h-full block object-cover z-0"
         />
 
@@ -220,7 +226,7 @@ export default function ScrollyCanvas({ onLoadProgress }: ScrollyCanvasProps) {
 
         {/* Preloader Overlay (smoothly fades away once loaded) */}
         {!isLoaded && (
-          <div className="absolute inset-0 z-30 flex flex-col items-center justify-center bg-[#080d0e] transition-opacity duration-700">
+          <div role="status" aria-live="polite" className="absolute inset-0 z-30 flex flex-col items-center justify-center bg-[#080d0e] transition-opacity duration-700">
             <div className="flex flex-col items-center space-y-4">
               <div className="relative w-16 h-16 flex items-center justify-center">
                 <div className="w-16 h-16 rounded-full border-2 border-white/10 border-t-cyan-400 animate-spin" />

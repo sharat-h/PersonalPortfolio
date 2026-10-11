@@ -4,7 +4,6 @@ import React from "react";
 import { motion, MotionValue, useTransform } from "framer-motion";
 import {
   ArrowDown,
-  Sparkles,
   Trophy,
   Brain,
   Cpu,

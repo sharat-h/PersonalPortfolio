@@ -5,12 +5,9 @@ import {
   Brain,
   GraduationCap,
   Award,
-  Terminal,
   Activity,
-  Layers,
   Sparkles,
   CheckCircle,
-  Database,
   Code2,
 } from "lucide-react";
 
