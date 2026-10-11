@@ -199,7 +199,7 @@ export default function ScrollyCanvas({ onLoadProgress }: ScrollyCanvasProps) {
     <div
       ref={containerRef}
       id="hero-scroll"
-      className="relative w-full h-[500vh] bg-[#080d0e]"
+      className="relative w-full h-[320vh] bg-[#080d0e]"
     >
       {/* Sticky container pinned to viewport */}
       <div className="sticky top-0 h-screen w-full overflow-hidden bg-[#080d0e] flex items-center justify-center">

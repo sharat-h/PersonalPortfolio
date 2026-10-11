@@ -68,6 +68,12 @@ export default function Navbar() {
               Intro
             </a>
             <a
+              href="#about"
+              className="hover:text-cyan-300 transition-colors cursor-pointer"
+            >
+              About
+            </a>
+            <a
               href="#work"
               className="hover:text-cyan-300 transition-colors cursor-pointer"
             >
@@ -77,7 +83,7 @@ export default function Navbar() {
               href="#stack"
               className="hover:text-cyan-300 transition-colors cursor-pointer"
             >
-              Capabilities
+              Stack
             </a>
             <a
               href="#contact"

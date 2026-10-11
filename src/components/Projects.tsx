@@ -200,7 +200,7 @@ export default function Projects() {
   return (
     <section
       id="work"
-      className="relative z-20 w-full min-h-screen py-32 px-6 sm:px-12 md:px-20 lg:px-28 bg-[#080d0e]"
+      className="relative z-20 w-full min-h-screen pt-10 pb-24 px-6 sm:px-12 md:px-20 lg:px-28 bg-[#080d0e]"
     >
       {/* Subtle background glow */}
       <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-cyan-900/10 blur-[140px] pointer-events-none rounded-full" />

@@ -64,8 +64,8 @@ body {
   pointer-events: none;
   background: radial-gradient(
     circle at 50% 50%,
-    transparent 45%,
-    rgba(8, 13, 14, 0.4) 75%,
+    transparent 50%,
+    rgba(8, 13, 14, 0.35) 75%,
     #080d0e 98%
   );
 }
@@ -85,4 +85,24 @@ body {
   background: linear-gradient(135deg, #a5f3fc 0%, #38bdf8 50%, #818cf8 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+}
+
+/* Infinite Marquee */
+@keyframes marquee {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-marquee {
+  display: flex;
+  width: max-content;
+  animation: marquee 30s linear infinite;
+}
+
+.animate-marquee:hover {
+  animation-play-state: paused;
 }

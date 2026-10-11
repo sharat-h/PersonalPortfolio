@@ -19,49 +19,49 @@ interface OverlayProps {
 
 export default function Overlay({ scrollYProgress, isReady }: OverlayProps) {
   // ==========================================
-  // Section 1: Hero (0% - 25%) - Center Aligned
+  // Section 1: Hero (0% - 32%) - Center Aligned
   // ==========================================
-  const opacity1 = useTransform(scrollYProgress, [0, 0.15, 0.25], [1, 0.8, 0]);
-  const y1 = useTransform(scrollYProgress, [0, 0.25], [0, -60]);
-  const scale1 = useTransform(scrollYProgress, [0, 0.25], [1, 0.95]);
+  const opacity1 = useTransform(scrollYProgress, [0, 0.22, 0.32], [1, 0.8, 0]);
+  const y1 = useTransform(scrollYProgress, [0, 0.32], [0, -60]);
+  const scale1 = useTransform(scrollYProgress, [0, 0.32], [1, 0.95]);
 
   // ==========================================
-  // Section 2: Craft (22% - 50%) - Left Aligned
+  // Section 2: Craft & PrepBot (26% - 64%) - Left Aligned
   // ==========================================
   const opacity2 = useTransform(
     scrollYProgress,
-    [0.2, 0.28, 0.4, 0.48],
+    [0.26, 0.34, 0.56, 0.65],
     [0, 1, 1, 0]
   );
   const y2 = useTransform(
     scrollYProgress,
-    [0.2, 0.28, 0.4, 0.48],
+    [0.26, 0.34, 0.56, 0.65],
     [50, 0, 0, -40]
   );
 
   // ==========================================
-  // Section 3: Achievements (50% - 80%) - Right Aligned
+  // Section 3: Achievements (58% - 98%) - Right Aligned
   // ==========================================
   const opacity3 = useTransform(
     scrollYProgress,
-    [0.5, 0.58, 0.72, 0.8],
+    [0.58, 0.66, 0.88, 0.98],
     [0, 1, 1, 0]
   );
   const y3 = useTransform(
     scrollYProgress,
-    [0.5, 0.58, 0.72, 0.8],
+    [0.58, 0.66, 0.88, 0.98],
     [50, 0, 0, -40]
   );
 
   // ==========================================
-  // Section 4: Outro Cue (82% - 100%) - Center Bottom
+  // Section 4: Transition Cue (88% - 100%) - Center Bottom
   // ==========================================
   const opacity4 = useTransform(
     scrollYProgress,
-    [0.82, 0.88, 0.98, 1],
-    [0, 1, 1, 0]
+    [0.85, 0.92, 1],
+    [0, 1, 1]
   );
-  const y4 = useTransform(scrollYProgress, [0.82, 0.92], [30, 0]);
+  const y4 = useTransform(scrollYProgress, [0.85, 0.95], [30, 0]);
 
   // Scroll indicator fade out early
   const scrollIndicatorOpacity = useTransform(
