@@ -5,10 +5,11 @@ import { motion, MotionValue, useTransform } from "framer-motion";
 import {
   ArrowDown,
   Sparkles,
-  Layers,
-  Code2,
+  Trophy,
+  Brain,
   Cpu,
-  MonitorPlay,
+  Bot,
+  ExternalLink,
 } from "lucide-react";
 
 interface OverlayProps {
@@ -39,7 +40,7 @@ export default function Overlay({ scrollYProgress, isReady }: OverlayProps) {
   );
 
   // ==========================================
-  // Section 3: Philosophy (50% - 80%) - Right Aligned
+  // Section 3: Achievements (50% - 80%) - Right Aligned
   // ==========================================
   const opacity3 = useTransform(
     scrollYProgress,
@@ -91,7 +92,7 @@ export default function Overlay({ scrollYProgress, isReady }: OverlayProps) {
               <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500" />
             </span>
             <span className="text-[11px] font-mono tracking-widest text-emerald-300 uppercase">
-              Available for Q2 Collaborations
+              B.E. AIML @ BMSIT&M • Open for Opportunities
             </span>
           </motion.div>
 
@@ -100,9 +101,9 @@ export default function Overlay({ scrollYProgress, isReady }: OverlayProps) {
             initial={{ opacity: 0, y: 20 }}
             animate={isReady ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
             transition={{ duration: 0.7, delay: 0.2 }}
-            className="text-5xl sm:text-7xl md:text-8xl lg:text-9xl font-bold tracking-tighter text-white uppercase drop-shadow-2xl"
+            className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-bold tracking-tighter text-white uppercase drop-shadow-2xl"
           >
-            Mallikarjun
+            Sharathkumar K M
           </motion.h1>
 
           {/* Subtitle */}
@@ -110,25 +111,44 @@ export default function Overlay({ scrollYProgress, isReady }: OverlayProps) {
             initial={{ opacity: 0, y: 20 }}
             animate={isReady ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
             transition={{ duration: 0.7, delay: 0.3 }}
-            className="mt-4 sm:mt-6 text-base sm:text-xl md:text-2xl font-light tracking-wide text-white/80 max-w-2xl text-glow"
+            className="mt-4 sm:mt-5 text-base sm:text-xl md:text-2xl font-light tracking-wide text-white/85 max-w-2xl text-glow"
           >
-            Creative Developer & Experience Designer
+            AI & Machine Learning Engineer • Full-Stack Developer
           </motion.p>
 
           <motion.p
             initial={{ opacity: 0, y: 15 }}
             animate={isReady ? { opacity: 1, y: 0 } : { opacity: 0, y: 15 }}
             transition={{ duration: 0.7, delay: 0.4 }}
-            className="mt-2 text-xs sm:text-sm font-mono text-cyan-400/80 tracking-widest uppercase"
+            className="mt-2 text-xs sm:text-sm font-mono text-cyan-400/90 tracking-widest uppercase"
           >
-            Next.js • Framer Motion • WebGL • Creative Coding
+            Creator of PrepBot • LLM Integration • Groq API • Python & ML
           </motion.p>
+
+          {/* Direct CTA button to PrepBot */}
+          <motion.div
+            initial={{ opacity: 0, y: 15 }}
+            animate={isReady ? { opacity: 1, y: 0 } : { opacity: 0, y: 15 }}
+            transition={{ duration: 0.7, delay: 0.5 }}
+            className="mt-6 pointer-events-auto"
+          >
+            <a
+              href="https://prepbotvk.netlify.app/"
+              target="_blank"
+              rel="noreferrer"
+              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-cyan-400 hover:bg-cyan-300 text-[#080d0e] font-bold text-xs tracking-wider uppercase transition-all shadow-[0_0_25px_rgba(56,189,248,0.35)]"
+            >
+              <Bot className="w-4 h-4" />
+              <span>Try PrepBot Live Mentor</span>
+              <ExternalLink className="w-3.5 h-3.5" />
+            </a>
+          </motion.div>
         </div>
 
         {/* Scroll Prompt at the bottom */}
         <motion.div
           style={{ opacity: scrollIndicatorOpacity }}
-          className="absolute bottom-10 inset-x-0 flex flex-col items-center justify-center text-white/50 pointer-events-auto"
+          className="absolute bottom-8 inset-x-0 flex flex-col items-center justify-center text-white/50 pointer-events-auto"
         >
           <div className="flex flex-col items-center space-y-2 cursor-pointer group">
             <span className="text-[10px] font-mono tracking-[0.3em] uppercase text-white/60 group-hover:text-cyan-300 transition-colors">
@@ -156,31 +176,31 @@ export default function Overlay({ scrollYProgress, isReady }: OverlayProps) {
         <div className="max-w-xl text-left pointer-events-auto">
           {/* Eyebrow badge */}
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full glass-pill mb-4 border border-cyan-500/20 text-cyan-400">
-            <Sparkles className="w-3.5 h-3.5 text-cyan-400" />
+            <Brain className="w-3.5 h-3.5 text-cyan-400" />
             <span className="text-xs font-mono tracking-widest uppercase">
-              The Vision
+              Core Engineering
             </span>
           </div>
 
           <h2 className="text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight text-white leading-tight drop-shadow-xl">
-            I build digital <br />
-            <span className="text-gradient-accent">experiences.</span>
+            I build intelligent <br />
+            <span className="text-gradient-accent">systems & software.</span>
           </h2>
 
-          <p className="mt-5 text-base sm:text-lg text-white/75 leading-relaxed font-light backdrop-blur-[2px]">
-            Crafting tactile web applications where code transforms into living emotion.
-            Specializing in high-framerate interactive sequences, WebGL shaders, and
-            sculpted kinetic interfaces that leave lasting impressions.
+          <p className="mt-5 text-base sm:text-lg text-white/80 leading-relaxed font-light backdrop-blur-[2px]">
+            Engineering AI-powered solutions with fast Groq API inference and
+            large language models. Developed <span className="text-cyan-300 font-medium">PrepBot</span>, an end-to-end placement preparation mentor offering HR mock interviews, DSA guidance, and resume intelligence.
           </p>
 
           {/* Interactive Tag Matrix */}
           <div className="mt-6 flex flex-wrap gap-2">
             {[
-              "WebGL & Three.js",
-              "Interactive Canvas",
-              "Framer Motion Physics",
-              "Next.js App Router",
-              "Micro-interactions",
+              "Groq API & LLMs",
+              "Python & ML",
+              "PrepBot Placement AI",
+              "SQL Databases",
+              "HTML / CSS / JavaScript",
+              "Netlify & Git",
             ].map((tag) => (
               <span
                 key={tag}
@@ -194,7 +214,7 @@ export default function Overlay({ scrollYProgress, isReady }: OverlayProps) {
       </motion.div>
 
       {/* ========================================================= */}
-      {/* SECTION 3: PHILOSOPHY (60% Scroll) - RIGHT ALIGNED        */}
+      {/* SECTION 3: ACHIEVEMENTS (60% Scroll) - RIGHT ALIGNED      */}
       {/* ========================================================= */}
       <motion.div
         style={{ opacity: opacity3, y: y3 }}
@@ -203,52 +223,51 @@ export default function Overlay({ scrollYProgress, isReady }: OverlayProps) {
         <div className="max-w-xl text-right pointer-events-auto flex flex-col items-end">
           {/* Eyebrow badge */}
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full glass-pill mb-4 border border-emerald-500/20 text-emerald-400">
-            <Layers className="w-3.5 h-3.5 text-emerald-400" />
+            <Trophy className="w-3.5 h-3.5 text-emerald-400" />
             <span className="text-xs font-mono tracking-widest uppercase">
-              Core Philosophy
+              Proven Track Record
             </span>
           </div>
 
           <h2 className="text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight text-white leading-tight drop-shadow-xl">
-            Bridging design <br />
+            From Hackathons <br />
             <span className="bg-gradient-to-r from-emerald-300 via-teal-300 to-cyan-300 bg-clip-text text-transparent">
-              and engineering.
+              to production code.
             </span>
           </h2>
 
-          <p className="mt-5 text-base sm:text-lg text-white/75 leading-relaxed font-light backdrop-blur-[2px] max-w-lg">
-            Aesthetic vision without technical precision is just a picture.
-            Technical capability without emotional finesse is just cold logic.
-            I live at the intersection where both collide at 60 frames per second.
+          <p className="mt-5 text-base sm:text-lg text-white/80 leading-relaxed font-light backdrop-blur-[2px] max-w-lg">
+            First place winner at Flinders University AI Competition.
+            Combining rigorous academic foundations at BMSIT&M with real-world AI applications, competitive machine learning, and collaborative leadership.
           </p>
 
-          {/* Kinetic Metric Cards */}
+          {/* Kinetic Metric Cards from Resume */}
           <div className="mt-8 grid grid-cols-3 gap-3 w-full max-w-md text-left">
             <div className="glass-panel p-3.5 rounded-xl border border-white/10 hover:border-white/20 transition-all">
-              <div className="flex items-center text-cyan-400 text-xs mb-1">
-                <MonitorPlay className="w-3.5 h-3.5 mr-1" />
-                <span>FPS</span>
+              <div className="flex items-center text-amber-400 text-xs mb-1">
+                <Trophy className="w-3.5 h-3.5 mr-1" />
+                <span>Award</span>
               </div>
-              <div className="text-xl font-bold text-white font-mono">60+</div>
-              <div className="text-[10px] text-white/50 font-mono">Silky Scrub</div>
+              <div className="text-lg font-bold text-white font-mono">1st Place</div>
+              <div className="text-[10px] text-white/50 font-mono">Flinders AI Win</div>
+            </div>
+
+            <div className="glass-panel p-3.5 rounded-xl border border-white/10 hover:border-white/20 transition-all">
+              <div className="flex items-center text-cyan-400 text-xs mb-1">
+                <Bot className="w-3.5 h-3.5 mr-1" />
+                <span>PrepBot</span>
+              </div>
+              <div className="text-lg font-bold text-white font-mono">Live App</div>
+              <div className="text-[10px] text-white/50 font-mono">Groq API Powered</div>
             </div>
 
             <div className="glass-panel p-3.5 rounded-xl border border-white/10 hover:border-white/20 transition-all">
               <div className="flex items-center text-emerald-400 text-xs mb-1">
                 <Cpu className="w-3.5 h-3.5 mr-1" />
-                <span>Frames</span>
+                <span>Academics</span>
               </div>
-              <div className="text-xl font-bold text-white font-mono">150</div>
-              <div className="text-[10px] text-white/50 font-mono">Lossless WebP</div>
-            </div>
-
-            <div className="glass-panel p-3.5 rounded-xl border border-white/10 hover:border-white/20 transition-all">
-              <div className="flex items-center text-teal-400 text-xs mb-1">
-                <Code2 className="w-3.5 h-3.5 mr-1" />
-                <span>Stack</span>
-              </div>
-              <div className="text-xl font-bold text-white font-mono">Next 14</div>
-              <div className="text-[10px] text-white/50 font-mono">Turbopack</div>
+              <div className="text-lg font-bold text-white font-mono">7.67 CGPA</div>
+              <div className="text-[10px] text-white/50 font-mono">BMSIT&M AIML</div>
             </div>
           </div>
         </div>
@@ -266,10 +285,10 @@ export default function Overlay({ scrollYProgress, isReady }: OverlayProps) {
             Sequence Complete
           </span>
           <h3 className="text-2xl sm:text-3xl font-bold text-white tracking-tight">
-            Selected Works & Archive
+            Projects & Experience
           </h3>
           <p className="text-xs sm:text-sm text-white/60 mt-2 font-light">
-            Scroll downwards to inspect full interactive case studies and production code.
+            Scroll downwards to inspect PrepBot, machine learning models, and resume credentials.
           </p>
           <div className="mt-4 flex items-center justify-center text-cyan-300 gap-1 text-xs font-mono">
             <span>Scroll for Projects</span>

@@ -49,15 +49,30 @@ export default function ScrollyCanvas({ onLoadProgress }: ScrollyCanvasProps) {
     const imgWidth = img.naturalWidth;
     const imgHeight = img.naturalHeight;
 
-    // object-fit: cover logic
-    const hRatio = canvasWidth / imgWidth;
-    const vRatio = canvasHeight / imgHeight;
-    const ratio = Math.max(hRatio, vRatio);
+    const canvasAspect = canvasWidth / canvasHeight;
+    const imgAspect = imgWidth / imgHeight;
 
-    const drawWidth = imgWidth * ratio;
-    const drawHeight = imgHeight * ratio;
-    const centerShiftX = (canvasWidth - drawWidth) / 2;
-    const centerShiftY = (canvasHeight - drawHeight) / 2;
+    let drawWidth: number;
+    let drawHeight: number;
+    let centerShiftX: number;
+    let centerShiftY: number;
+
+    if (canvasAspect > imgAspect) {
+      // Desktop / Widescreen: Scale by height so the full head, eyes, and torso are perfectly framed without being cut off
+      const scale = (canvasHeight / imgHeight) * 1.02;
+      drawWidth = imgWidth * scale;
+      drawHeight = imgHeight * scale;
+      centerShiftX = (canvasWidth - drawWidth) / 2;
+      // Headroom at the top: align with gentle offset so hair and forehead have breathing room
+      centerShiftY = (canvasHeight - drawHeight) * 0.1;
+    } else {
+      // Mobile / Portrait: Cover screen while keeping head framed safely near the top
+      const ratio = Math.max(canvasWidth / imgWidth, canvasHeight / imgHeight);
+      drawWidth = imgWidth * ratio;
+      drawHeight = imgHeight * ratio;
+      centerShiftX = (canvasWidth - drawWidth) / 2;
+      centerShiftY = Math.max(canvasHeight - drawHeight, (canvasHeight - drawHeight) * 0.15);
+    }
 
     ctx.clearRect(0, 0, canvasWidth, canvasHeight);
 
@@ -195,13 +210,13 @@ export default function ScrollyCanvas({ onLoadProgress }: ScrollyCanvasProps) {
         />
 
         {/* Cinematic Vignette & Ambient Radial Glow for Seamless Blending */}
-        <div className="absolute inset-0 z-1 pointer-events-none bg-gradient-to-t from-[#080d0e] via-transparent to-[#080d0e]/60" />
-        <div className="absolute inset-0 z-1 pointer-events-none bg-gradient-to-r from-[#080d0e]/80 via-transparent to-[#080d0e]/80" />
+        <div className="absolute inset-0 z-1 pointer-events-none bg-gradient-to-t from-[#080d0e] via-transparent to-[#080d0e]/30" />
+        <div className="absolute inset-0 z-1 pointer-events-none bg-gradient-to-r from-[#080d0e]/60 via-transparent to-[#080d0e]/60" />
         <div className="absolute inset-0 z-1 pointer-events-none canvas-vignette" />
 
         {/* Top & Bottom Subtle Fog Overlays */}
-        <div className="absolute top-0 inset-x-0 h-32 bg-gradient-to-b from-[#080d0e] to-transparent z-2 pointer-events-none" />
-        <div className="absolute bottom-0 inset-x-0 h-40 bg-gradient-to-t from-[#080d0e] to-transparent z-2 pointer-events-none" />
+        <div className="absolute top-0 inset-x-0 h-20 bg-gradient-to-b from-[#080d0e]/60 to-transparent z-2 pointer-events-none" />
+        <div className="absolute bottom-0 inset-x-0 h-36 bg-gradient-to-t from-[#080d0e] to-transparent z-2 pointer-events-none" />
 
         {/* Preloader Overlay (smoothly fades away once loaded) */}
         {!isLoaded && (

@@ -13,8 +13,9 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Mallikarjun — Creative Developer & Experience Engineer",
-  description: "Awwwards-recognized Creative Developer crafting high-performance interactive web experiences, WebGL, and generative design.",
+  title: "Sharathkumar K M — AI & Machine Learning Engineer | Creative Developer",
+  description:
+    "Portfolio of Sharathkumar K M. B.E. Artificial Intelligence & Machine Learning engineer from Bengaluru, Creator of PrepBot (AI Placement Mentor), and Flinders AI Hackathon Winner.",
 };
 
 export default function RootLayout({

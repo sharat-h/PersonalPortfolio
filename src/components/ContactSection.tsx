@@ -11,10 +11,13 @@ import {
   Sparkles,
   MapPin,
   Clock,
+  Phone,
+  Bot,
 } from "lucide-react";
 
 export default function ContactSection() {
   const [copied, setCopied] = useState(false);
+  const [copiedPhone, setCopiedPhone] = useState(false);
   const [currentTime, setCurrentTime] = useState("");
   const [formSubmitted, setFormSubmitted] = useState(false);
   const [formData, setFormData] = useState({
@@ -42,9 +45,15 @@ export default function ContactSection() {
   }, []);
 
   const handleCopyEmail = () => {
-    navigator.clipboard.writeText("mallik.dev@pm.me");
+    navigator.clipboard.writeText("sharathanku2005@gmail.com");
     setCopied(true);
     setTimeout(() => setCopied(false), 2500);
+  };
+
+  const handleCopyPhone = () => {
+    navigator.clipboard.writeText("+91 9538628609");
+    setCopiedPhone(true);
+    setTimeout(() => setCopiedPhone(false), 2500);
   };
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -75,40 +84,41 @@ export default function ContactSection() {
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full glass-pill mb-6 border border-cyan-500/20 text-cyan-400">
             <Sparkles className="w-3.5 h-3.5 text-cyan-400" />
             <span className="text-xs font-mono tracking-widest uppercase">
-              Start A Dialogue
+              Get In Touch
             </span>
           </div>
 
           <h2 className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-bold tracking-tighter text-white uppercase leading-none">
-            Have an ambitious <br />
-            <span className="text-gradient-accent">vision? Let's build.</span>
+            Let's build <br />
+            <span className="text-gradient-accent">intelligent software.</span>
           </h2>
 
           <p className="mt-6 text-base sm:text-xl text-white/60 max-w-2xl font-light">
-            Currently accepting commissions for design-forward web experiences,
-            WebGL engineering, and creative technical leadership for Q2/Q3 2026.
+            Looking for an ambitious AI/ML engineer or full-stack builder?
+            Open to internships, junior AI/ML roles, hackathons, and high-impact engineering projects.
           </p>
         </div>
 
         {/* Content Split: Direct Contact & Quick Message */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 mb-24">
           {/* Left Column: Direct Inquiries (5 cols) */}
-          <div className="lg:col-span-5 space-y-8">
-            <div className="glass-panel p-6 sm:p-8 rounded-2xl border border-white/10">
-              <span className="text-xs font-mono text-white/40 uppercase tracking-widest block mb-2">
-                Direct Electronic Mail
+          <div className="lg:col-span-5 space-y-6">
+            {/* Email Card */}
+            <div className="glass-panel p-6 sm:p-7 rounded-2xl border border-white/10">
+              <span className="text-xs font-mono text-white/40 uppercase tracking-widest block mb-1">
+                Direct Email
               </span>
               <div className="flex items-center justify-between gap-4 mt-2">
                 <a
-                  href="mailto:mallik.dev@pm.me"
-                  className="text-lg sm:text-xl font-mono text-white font-semibold hover:text-cyan-300 transition-colors break-all"
+                  href="mailto:sharathanku2005@gmail.com"
+                  className="text-base sm:text-lg font-mono text-white font-semibold hover:text-cyan-300 transition-colors break-all"
                 >
-                  mallik.dev@pm.me
+                  sharathanku2005@gmail.com
                 </a>
                 <button
                   onClick={handleCopyEmail}
                   className="p-2.5 rounded-xl glass-pill hover:bg-white/10 text-white/70 hover:text-white transition-all cursor-pointer shrink-0"
-                  title="Copy to clipboard"
+                  title="Copy email to clipboard"
                 >
                   {copied ? (
                     <Check className="w-4 h-4 text-emerald-400" />
@@ -119,7 +129,38 @@ export default function ContactSection() {
               </div>
               {copied && (
                 <p className="text-xs font-mono text-emerald-400 mt-2">
-                  Address copied to clipboard!
+                  Email copied to clipboard!
+                </p>
+              )}
+            </div>
+
+            {/* Phone Card */}
+            <div className="glass-panel p-6 sm:p-7 rounded-2xl border border-white/10">
+              <span className="text-xs font-mono text-white/40 uppercase tracking-widest block mb-1">
+                Telephone Contact
+              </span>
+              <div className="flex items-center justify-between gap-4 mt-2">
+                <a
+                  href="tel:+919538628609"
+                  className="text-base sm:text-lg font-mono text-white font-semibold hover:text-cyan-300 transition-colors"
+                >
+                  +91 9538628609
+                </a>
+                <button
+                  onClick={handleCopyPhone}
+                  className="p-2.5 rounded-xl glass-pill hover:bg-white/10 text-white/70 hover:text-white transition-all cursor-pointer shrink-0"
+                  title="Copy phone to clipboard"
+                >
+                  {copiedPhone ? (
+                    <Check className="w-4 h-4 text-emerald-400" />
+                  ) : (
+                    <Phone className="w-4 h-4 text-teal-400" />
+                  )}
+                </button>
+              </div>
+              {copiedPhone && (
+                <p className="text-xs font-mono text-emerald-400 mt-2">
+                  Phone number copied to clipboard!
                 </p>
               )}
             </div>
@@ -132,10 +173,10 @@ export default function ContactSection() {
                   <span>Base Location</span>
                 </div>
                 <div className="text-sm font-semibold text-white font-mono">
-                  Bangalore, IN
+                  Bengaluru, India
                 </div>
                 <div className="text-[11px] text-white/50 font-mono mt-0.5">
-                  Remote Worldwide
+                  BMSIT&M Campus
                 </div>
               </div>
 
@@ -145,11 +186,11 @@ export default function ContactSection() {
                   <span>Local Time</span>
                 </div>
                 <div className="text-sm font-semibold text-white font-mono">
-                  {currentTime || "13:00 IST"}
+                  {currentTime || "IST"}
                 </div>
                 <div className="text-[11px] text-emerald-400 font-mono mt-0.5 flex items-center gap-1">
                   <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 inline-block animate-pulse" />
-                  Available Now
+                  Active
                 </div>
               </div>
             </div>
@@ -157,39 +198,45 @@ export default function ContactSection() {
             {/* Social Network Links */}
             <div>
               <span className="text-xs font-mono text-white/40 uppercase tracking-widest block mb-4">
-                Digital Footprint
+                Verified Profiles
               </span>
               <div className="flex flex-wrap gap-2.5">
                 {[
-                  { name: "GitHub", href: "https://github.com" },
-                  { name: "Twitter / X", href: "https://x.com" },
+                  {
+                    name: "PrepBot Live",
+                    href: "https://prepbotvk.netlify.app/",
+                    highlight: true,
+                  },
                   { name: "LinkedIn", href: "https://linkedin.com" },
-                  { name: "Awwwards", href: "https://awwwards.com" },
-                  { name: "ReadCV", href: "https://read.cv" },
+                  { name: "GitHub", href: "https://github.com" },
                 ].map((s) => (
                   <a
                     key={s.name}
                     href={s.href}
                     target="_blank"
                     rel="noreferrer"
-                    className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl glass-pill text-xs font-mono text-white/70 hover:text-cyan-300 hover:border-cyan-400/40 transition-all cursor-pointer"
+                    className={`inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl text-xs font-mono transition-all cursor-pointer ${
+                      s.highlight
+                        ? "bg-cyan-500/20 text-cyan-300 border border-cyan-400/40 shadow-[0_0_15px_rgba(56,189,248,0.2)]"
+                        : "glass-pill text-white/70 hover:text-cyan-300 hover:border-cyan-400/40"
+                    }`}
                   >
                     <span>{s.name}</span>
-                    <ArrowUpRight className="w-3 h-3 opacity-60" />
+                    <ArrowUpRight className="w-3 h-3 opacity-70" />
                   </a>
                 ))}
               </div>
             </div>
           </div>
 
-          {/* Right Column: Interactive Quick Inquiry Form (7 cols) */}
+          {/* Right Column: Quick Contact Message Form (7 cols) */}
           <div className="lg:col-span-7">
             <div className="glass-panel p-6 sm:p-8 rounded-2xl border border-white/10 relative">
               <h3 className="text-xl font-bold text-white tracking-tight mb-1">
-                Send a Project Brief
+                Send a Message to Sharathkumar
               </h3>
               <p className="text-xs text-white/50 font-mono mb-6">
-                Direct transmission to inbox • 24hr response guaranteed
+                Direct transmission • Quick response
               </p>
 
               {formSubmitted ? (
@@ -198,10 +245,10 @@ export default function ContactSection() {
                     <Check className="w-6 h-6" />
                   </div>
                   <h4 className="text-lg font-bold text-white">
-                    Transmission Dispatched
+                    Message Dispatched
                   </h4>
                   <p className="text-xs text-white/60 mt-1 max-w-sm">
-                    Thank you. Your message has been logged. I'll get back to you within 24 hours.
+                    Thank you. Your message has been noted. I'll get back to you shortly at {formData.email}.
                   </p>
                 </div>
               ) : (
@@ -218,7 +265,7 @@ export default function ContactSection() {
                         onChange={(e) =>
                           setFormData({ ...formData, name: e.target.value })
                         }
-                        placeholder="e.g. Satoshi Nakamoto"
+                        placeholder="e.g. Alex Hunter"
                         className="w-full px-4 py-2.5 rounded-xl bg-white/[0.04] border border-white/10 text-white placeholder-white/20 text-xs font-mono focus:outline-none focus:border-cyan-400/60 focus:bg-white/[0.07] transition-all"
                       />
                     </div>
@@ -233,7 +280,7 @@ export default function ContactSection() {
                         onChange={(e) =>
                           setFormData({ ...formData, email: e.target.value })
                         }
-                        placeholder="satoshi@bitcoin.org"
+                        placeholder="alex@company.com"
                         className="w-full px-4 py-2.5 rounded-xl bg-white/[0.04] border border-white/10 text-white placeholder-white/20 text-xs font-mono focus:outline-none focus:border-cyan-400/60 focus:bg-white/[0.07] transition-all"
                       />
                     </div>
@@ -241,7 +288,7 @@ export default function ContactSection() {
 
                   <div>
                     <label className="text-[11px] font-mono text-white/60 block mb-1 uppercase tracking-wider">
-                      Project Scope & Timeline
+                      Subject / Project Scope
                     </label>
                     <textarea
                       rows={4}
@@ -250,7 +297,7 @@ export default function ContactSection() {
                       onChange={(e) =>
                         setFormData({ ...formData, message: e.target.value })
                       }
-                      placeholder="Tell me about your product, expected milestones, or creative ambitions..."
+                      placeholder="Discussing an AI/ML opportunity, project collaboration, or feedback on PrepBot..."
                       className="w-full px-4 py-2.5 rounded-xl bg-white/[0.04] border border-white/10 text-white placeholder-white/20 text-xs font-mono focus:outline-none focus:border-cyan-400/60 focus:bg-white/[0.07] transition-all resize-none"
                     />
                   </div>
@@ -271,7 +318,7 @@ export default function ContactSection() {
         {/* Bottom Credits & Back to Top */}
         <div className="pt-8 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-mono text-white/40">
           <div>
-            © 2026 Mallikarjun. Built with Next.js 14 & Framer Motion.
+            © 2026 Sharathkumar K M • BMSIT&M AIML • Built with Next.js 14 & Framer Motion.
           </div>
           <button
             onClick={scrollToTop}

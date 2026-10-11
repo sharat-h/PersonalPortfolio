@@ -18,7 +18,7 @@ export default function Navbar() {
   }, []);
 
   const handleCopyEmail = () => {
-    navigator.clipboard.writeText("mallik.dev@pm.me");
+    navigator.clipboard.writeText("sharathanku2005@gmail.com");
     setCopied(true);
     setTimeout(() => setCopied(false), 2500);
   };
@@ -43,18 +43,18 @@ export default function Navbar() {
             href="#hero-scroll"
             className="flex items-center gap-2.5 group cursor-pointer"
           >
-            <div className="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center border border-white/15 group-hover:border-cyan-400/50 transition-colors">
-              <span className="font-mono font-bold text-xs text-white group-hover:text-cyan-300 transition-colors">
-                M
+            <div className="w-8 h-8 rounded-full bg-cyan-500/10 flex items-center justify-center border border-cyan-400/30 group-hover:border-cyan-400 transition-colors">
+              <span className="font-mono font-bold text-xs text-cyan-300 group-hover:text-white transition-colors">
+                SK
               </span>
             </div>
             <div className="flex flex-col text-left">
               <span className="font-bold text-xs tracking-wider uppercase text-white font-mono">
-                Mallikarjun
+                Sharathkumar K M
               </span>
               <span className="text-[9px] font-mono text-white/50 tracking-widest flex items-center gap-1">
                 <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 inline-block animate-pulse" />
-                ONLINE
+                AI & ML • BMSIT
               </span>
             </div>
           </a>
@@ -103,7 +103,7 @@ export default function Navbar() {
               ) : (
                 <>
                   <Copy className="w-3 h-3 text-cyan-400" />
-                  <span>mallik.dev@pm.me</span>
+                  <span>sharathanku2005@gmail.com</span>
                 </>
               )}
             </button>

@@ -2,20 +2,22 @@
 
 import React, { useEffect, useRef } from "react";
 import {
-  Code2,
-  Cpu,
-  Layers,
-  Sparkles,
-  Zap,
+  Brain,
+  GraduationCap,
+  Award,
   Terminal,
   Activity,
-  Sliders,
+  Layers,
+  Sparkles,
+  CheckCircle,
+  Database,
+  Code2,
 } from "lucide-react";
 
 export default function TechStack() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
-  // Interactive micro-particle wave canvas inside the Bento grid
+  // Interactive wave visualizer inside the Bento grid
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
@@ -36,22 +38,22 @@ export default function TechStack() {
       step += 0.02;
       ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-      const lines = 6;
+      const lines = 5;
       const points = 40;
       const width = canvas.width;
       const height = canvas.height;
 
       for (let l = 0; l < lines; l++) {
         ctx.beginPath();
-        ctx.strokeStyle = `rgba(56, 189, 248, ${0.12 + l * 0.06})`;
+        ctx.strokeStyle = `rgba(56, 189, 248, ${0.12 + l * 0.07})`;
         ctx.lineWidth = 1.5;
 
         for (let p = 0; p <= points; p++) {
           const x = (width / points) * p;
           const y =
             height / 2 +
-            Math.sin(step + p * 0.15 + l * 0.4) * (20 + l * 6) +
-            Math.cos(step * 0.5 + p * 0.1) * 10;
+            Math.sin(step + p * 0.16 + l * 0.4) * (20 + l * 6) +
+            Math.cos(step * 0.5 + p * 0.1) * 8;
 
           if (p === 0) {
             ctx.moveTo(x, y);
@@ -82,23 +84,22 @@ export default function TechStack() {
         {/* Section Header */}
         <div className="mb-14">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full glass-pill mb-4 border border-cyan-500/20 text-cyan-400">
-            <Cpu className="w-3.5 h-3.5 text-cyan-400" />
+            <Brain className="w-3.5 h-3.5 text-cyan-400" />
             <span className="text-xs font-mono tracking-widest uppercase">
-              Technical Architecture
+              Profile & Technical Matrix
             </span>
           </div>
           <h2 className="text-4xl sm:text-5xl font-bold tracking-tight text-white uppercase">
-            Engineering & <span className="text-gradient-accent">Arsenal</span>
+            Education, Skills & <span className="text-gradient-accent">Credentials</span>
           </h2>
           <p className="mt-3 text-base text-white/60 max-w-xl font-light">
-            Crafting experiences that don't compromise speed for spectacle.
-            Every tool is picked for extreme runtime performance and creative flexibility.
+            Academic training in Artificial Intelligence & Machine Learning at BMSIT&M combined with practical LLM engineering and verified certifications.
           </p>
         </div>
 
         {/* Bento Grid */}
         <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6">
-          {/* Card 1: Interactive Wave Visualizer (Spans 2 cols) */}
+          {/* Card 1: Interactive Wave Visualizer & ML Philosophy (Spans 2 cols) */}
           <div className="md:col-span-2 relative rounded-2xl glass-panel border border-white/10 p-6 sm:p-8 overflow-hidden flex flex-col justify-between min-h-[280px]">
             <canvas
               ref={canvasRef}
@@ -107,114 +108,165 @@ export default function TechStack() {
             <div className="relative z-10">
               <div className="flex items-center gap-2 text-cyan-400 text-xs font-mono uppercase tracking-wider mb-2">
                 <Activity className="w-4 h-4 animate-pulse" />
-                <span>Real-Time Math Dynamics</span>
+                <span>AI Core & Inference Architecture</span>
               </div>
               <h3 className="text-2xl font-bold text-white tracking-tight">
-                Generative Wave Simulation
+                Large Language Model Integration
               </h3>
               <p className="text-sm text-white/70 mt-2 max-w-md font-light">
-                Continuous GPU-friendly trigonometry calculations rendered directly to HTML5 Canvas with sub-millisecond execution overhead.
+                Specialized in integrating LLMs through high-speed APIs like Groq to build practical, context-aware platforms like PrepBot with ultra-low latency.
               </p>
             </div>
-            <div className="relative z-10 mt-6 flex items-center gap-4 text-xs font-mono text-white/50">
+            <div className="relative z-10 mt-6 flex flex-wrap items-center gap-3 text-xs font-mono text-white/50">
               <span className="px-2.5 py-1 rounded-md bg-white/5 border border-white/10 text-cyan-300">
-                120 FPS capable
+                Groq API
               </span>
-              <span>Zero external physics bloat</span>
+              <span className="px-2.5 py-1 rounded-md bg-white/5 border border-white/10 text-emerald-300">
+                Python NLP
+              </span>
+              <span className="px-2.5 py-1 rounded-md bg-white/5 border border-white/10 text-teal-300">
+                Context Retention
+              </span>
             </div>
           </div>
 
-          {/* Card 2: Performance Telemetry (1 col) */}
+          {/* Card 2: Academic Background (1 col) */}
           <div className="rounded-2xl glass-panel border border-white/10 p-6 flex flex-col justify-between">
             <div>
-              <div className="flex items-center gap-2 text-emerald-400 text-xs font-mono uppercase tracking-wider mb-3">
-                <Zap className="w-4 h-4" />
-                <span>Performance Index</span>
+              <div className="flex items-center gap-2 text-cyan-400 text-xs font-mono uppercase tracking-wider mb-3">
+                <GraduationCap className="w-4 h-4" />
+                <span>Education</span>
               </div>
-              <div className="space-y-4">
-                <div>
-                  <div className="flex justify-between text-xs font-mono text-white/70 mb-1">
-                    <span>Lighthouse Speed</span>
-                    <span className="text-emerald-400 font-bold">100 / 100</span>
-                  </div>
-                  <div className="w-full h-1.5 rounded-full bg-white/10 overflow-hidden">
-                    <div className="w-full h-full bg-emerald-400 rounded-full" />
-                  </div>
+              <h4 className="text-base font-bold text-white tracking-tight">
+                BMS Institute of Technology & Management
+              </h4>
+              <p className="text-xs text-white/70 font-mono mt-1">
+                B.E. in AI & Machine Learning
+              </p>
+              <div className="mt-4 space-y-2 text-xs font-mono">
+                <div className="flex justify-between text-white/60">
+                  <span>Timeline:</span>
+                  <span className="text-white font-medium">2023 – 2027</span>
                 </div>
-                <div>
-                  <div className="flex justify-between text-xs font-mono text-white/70 mb-1">
-                    <span>Frame Stability</span>
-                    <span className="text-cyan-400 font-bold">99.8%</span>
-                  </div>
-                  <div className="w-full h-1.5 rounded-full bg-white/10 overflow-hidden">
-                    <div className="w-[99.8%] h-full bg-cyan-400 rounded-full" />
-                  </div>
+                <div className="flex justify-between text-white/60">
+                  <span>CGPA:</span>
+                  <span className="text-cyan-300 font-bold">7.67 / 10</span>
                 </div>
-                <div>
-                  <div className="flex justify-between text-xs font-mono text-white/70 mb-1">
-                    <span>Layout Shift (CLS)</span>
-                    <span className="text-teal-400 font-bold">0.00</span>
-                  </div>
-                  <div className="w-full h-1.5 rounded-full bg-white/10 overflow-hidden">
-                    <div className="w-full h-full bg-teal-400 rounded-full" />
-                  </div>
+                <div className="flex justify-between text-white/60">
+                  <span>10th / 12th:</span>
+                  <span className="text-emerald-300 font-medium">91.5% / 92.6%</span>
                 </div>
               </div>
             </div>
-            <p className="text-[11px] font-mono text-white/40 mt-4">
-              Tested on Chromium & WebKit engines.
+            <p className="text-[10px] font-mono text-white/40 mt-4 border-t border-white/5 pt-3">
+              Bengaluru, Karnataka, India
             </p>
           </div>
 
-          {/* Card 3: Philosophy / Terminal (1 col) */}
+          {/* Card 3: Honors & Leadership (1 col) */}
           <div className="rounded-2xl glass-panel border border-white/10 p-6 flex flex-col justify-between">
             <div>
               <div className="flex items-center gap-2 text-amber-400 text-xs font-mono uppercase tracking-wider mb-3">
-                <Terminal className="w-4 h-4" />
-                <span>Manifesto</span>
+                <Award className="w-4 h-4" />
+                <span>Honors & Roles</span>
               </div>
-              <div className="p-3 rounded-xl bg-black/40 border border-white/5 font-mono text-xs text-white/80 space-y-2">
-                <p className="text-cyan-400">$ echo $PRINCIPLE</p>
-                <p className="text-white/90">
-                  "Speed is a feature. Animation is storytelling. Polish is respect."
-                </p>
+              <div className="space-y-4">
+                <div>
+                  <span className="text-xs font-bold text-amber-300 font-mono block">
+                    Winner (1st Place)
+                  </span>
+                  <span className="text-xs text-white/80 block mt-0.5">
+                    Flinders University AI Competition
+                  </span>
+                  <span className="text-[10px] font-mono text-white/50 block">
+                    3-Member Team AI Interview Prep Bot
+                  </span>
+                </div>
+                <div className="border-t border-white/5 pt-3">
+                  <span className="text-xs font-bold text-teal-300 font-mono block">
+                    Leadership
+                  </span>
+                  <span className="text-xs text-white/80 block mt-0.5">
+                    College Sports Coordinator
+                  </span>
+                  <span className="text-[10px] font-mono text-white/50 block">
+                    Event Logistics & Team Collaboration
+                  </span>
+                </div>
               </div>
-            </div>
-            <div className="mt-4 text-xs font-mono text-white/50">
-              Deterministic state • Pure functions
             </div>
           </div>
 
-          {/* Card 4: The Tech Stack Pills (Spans 3 cols or Full) */}
-          <div className="md:col-span-3 lg:col-span-4 rounded-2xl glass-panel border border-white/10 p-6 sm:p-8">
-            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
-              <div className="flex items-center gap-2 text-white/80 text-xs font-mono uppercase tracking-wider">
-                <Sliders className="w-4 h-4 text-cyan-400" />
-                <span>Production Stack & Ecosystem</span>
+          {/* Card 4: Verified Certifications (Spans 2 cols) */}
+          <div className="md:col-span-2 rounded-2xl glass-panel border border-white/10 p-6 sm:p-7">
+            <div className="flex items-center justify-between mb-4">
+              <div className="flex items-center gap-2 text-xs font-mono text-emerald-400 uppercase tracking-wider">
+                <CheckCircle className="w-4 h-4" />
+                <span>Verified Certifications</span>
               </div>
-              <span className="text-xs font-mono text-white/40">
-                Modern 2026 Ready
+              <span className="text-[11px] font-mono text-white/40">
+                NPTEL & Infosys Springboard
+              </span>
+            </div>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+              {[
+                { title: "Intro to Large Language Models (LLMs)", issuer: "NPTEL" },
+                { title: "Python Programming", issuer: "Infosys Springboard" },
+                { title: "Java Programming", issuer: "Infosys Springboard" },
+                { title: "Software Engineering / SEPM", issuer: "Infosys Springboard" },
+                { title: "Climate Risk & Sustainable Dev", issuer: "NPTEL" },
+              ].map((cert) => (
+                <div
+                  key={cert.title}
+                  className="p-3 rounded-xl bg-white/[0.03] border border-white/5 flex items-center justify-between"
+                >
+                  <div className="pr-2">
+                    <p className="text-xs font-semibold text-white truncate max-w-[220px]">
+                      {cert.title}
+                    </p>
+                    <span className="text-[10px] font-mono text-emerald-400/80">
+                      {cert.issuer}
+                    </span>
+                  </div>
+                  <Sparkles className="w-3.5 h-3.5 text-emerald-400/70 shrink-0" />
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Card 5: Core Technical Arsenal (Spans 2 cols) */}
+          <div className="md:col-span-2 rounded-2xl glass-panel border border-white/10 p-6 sm:p-7">
+            <div className="flex items-center justify-between mb-4">
+              <div className="flex items-center gap-2 text-xs font-mono text-cyan-400 uppercase tracking-wider">
+                <Code2 className="w-4 h-4" />
+                <span>Technical Skills Matrix</span>
+              </div>
+              <span className="text-[11px] font-mono text-white/40">
+                Languages & Tools
               </span>
             </div>
 
-            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-3">
+            <div className="grid grid-cols-2 sm:grid-cols-3 gap-2.5">
               {[
-                { name: "Next.js 14", sub: "App Router / Turbopack" },
-                { name: "Framer Motion", sub: "Spring Physics & Gestures" },
-                { name: "HTML5 Canvas", sub: "Hardware Acceleration" },
-                { name: "TypeScript", sub: "Type-Safe Architecture" },
-                { name: "Tailwind CSS", sub: "Design System Tokens" },
-                { name: "WebGL & Three.js", sub: "Spatial & Shaders" },
-              ].map((tech) => (
+                { name: "Python", cat: "Languages" },
+                { name: "Groq API & LLMs", cat: "AI / ML" },
+                { name: "Machine Learning", cat: "AI / ML" },
+                { name: "SQL Databases", cat: "Database" },
+                { name: "HTML5 / CSS3", cat: "Frontend" },
+                { name: "JavaScript / React", cat: "Web" },
+                { name: "C & Java (Basic)", cat: "Languages" },
+                { name: "Git & GitHub", cat: "Version Control" },
+                { name: "Netlify", cat: "Deployment" },
+              ].map((skill) => (
                 <div
-                  key={tech.name}
-                  className="p-3.5 rounded-xl bg-white/[0.03] border border-white/5 hover:border-cyan-400/30 hover:bg-white/[0.06] transition-all group"
+                  key={skill.name}
+                  className="p-2.5 rounded-xl bg-white/[0.03] border border-white/5 hover:border-cyan-400/30 transition-colors"
                 >
-                  <div className="text-xs font-mono font-semibold text-white group-hover:text-cyan-300 transition-colors">
-                    {tech.name}
+                  <div className="text-xs font-mono font-medium text-white">
+                    {skill.name}
                   </div>
-                  <div className="text-[10px] font-mono text-white/50 mt-1">
-                    {tech.sub}
+                  <div className="text-[9px] font-mono text-white/40">
+                    {skill.cat}
                   </div>
                 </div>
               ))}

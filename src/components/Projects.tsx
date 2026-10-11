@@ -4,13 +4,14 @@ import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   ExternalLink,
-  Layers,
   Sparkles,
   ArrowUpRight,
   X,
   CheckCircle2,
-  Cpu,
-  Monitor,
+  Bot,
+  Trophy,
+  Brain,
+  Layers,
 } from "lucide-react";
 
 function GithubIcon({ className = "w-4 h-4" }: { className?: string }) {
@@ -35,101 +36,157 @@ interface Project {
   tags: string[];
   description: string;
   longDescription: string;
+  features: string[];
   metrics: { label: string; value: string }[];
   accentGradient: string;
   demoUrl: string;
   githubUrl: string;
   featured: boolean;
+  highlightLabel?: string;
 }
 
 const PROJECTS_DATA: Project[] = [
   {
-    id: "aetherial-os",
-    title: "Aetherial OS",
-    tagline: "Spatial Web Computing & Shaders",
-    category: "WebGL / Spatial UI",
-    year: "2026",
-    tags: ["Next.js 14", "WebGL", "GLSL Shaders", "Three.js", "Tailwind"],
-    description:
-      "A spatial interface engine engineered with interactive WebGL viewports, real-time raymarched glass refraction, and zero-latency state sync.",
-    longDescription:
-      "Aetherial explores post-flat computing environments on the modern web. Built using raw GLSL shaders alongside Next.js 14 App Router, it achieves 60fps glass refractions and spatial window management without burning GPU overhead.",
-    metrics: [
-      { label: "Render Frame", value: "60 FPS" },
-      { label: "GPU Overhead", value: "< 14%" },
-      { label: "Recognition", value: "Awwwards SOTD" },
+    id: "prepbot",
+    title: "PrepBot",
+    tagline: "AI-Powered Placement Preparation Mentor",
+    category: "AI / LLM Application",
+    year: "Live",
+    highlightLabel: "FEATURED SPOTLIGHT",
+    tags: [
+      "Groq API",
+      "LLM Integration",
+      "HTML5",
+      "CSS3",
+      "JavaScript",
+      "Netlify Deployment",
     ],
-    accentGradient: "from-cyan-500/20 via-blue-500/10 to-transparent",
-    demoUrl: "https://github.com",
+    description:
+      "An end-to-end AI placement mentor deployed on Netlify. Powers interactive mock HR interviews, resume preparation, aptitude coaching, DSA, email etiquette, and soft skills with low-latency Groq LLM inference.",
+    longDescription:
+      "PrepBot solves the core interview anxiety and preparation bottlenecks faced by college students. Engineered with conversational context retention, instant quick-action prompts, and clean conversation state management, students can practice role-specific technical rounds, polish HR responses, and receive structured resume feedback around the clock.",
+    features: [
+      "Simulates real-world HR & technical interview rounds with contextual memory",
+      "Comprehensive modules for Aptitude, DSA, Company-Specific prep, and Email etiquette",
+      "Ultra-low latency inference using Groq API LPU infrastructure",
+      "Interactive quick-action buttons and clear-conversation session controls",
+    ],
+    metrics: [
+      { label: "Status", value: "Live on Netlify" },
+      { label: "Inference Engine", value: "Groq LLM" },
+      { label: "Live Domain", value: "prepbotvk.netlify.app" },
+    ],
+    accentGradient: "from-cyan-500/30 via-teal-500/15 to-transparent",
+    demoUrl: "https://prepbotvk.netlify.app/",
     githubUrl: "https://github.com",
     featured: true,
   },
   {
-    id: "chronos-horlogerie",
-    title: "Chronos Horlogerie",
-    tagline: "Kinetic Luxury Watch Scrollytelling",
-    category: "Scrollytelling / 3D",
-    year: "2025",
-    tags: ["HTML5 Canvas", "Framer Motion", "React Three Fiber", "WebP Sequence"],
+    id: "flinders-ai-winner",
+    title: "AI Interview Simulation Bot",
+    tagline: "Flinders University AI Competition — 1st Place Winner",
+    category: "Award Winning AI",
+    year: "2024",
+    highlightLabel: "1ST PLACE WINNER",
+    tags: [
+      "Groq API",
+      "LLM Integration",
+      "Prompt Engineering",
+      "Hackathon 1st Place",
+      "Team Leadership",
+    ],
     description:
-      "A masterclass in precision scroll-driven product storytelling. Features exploded-assembly scrubbing, photorealistic materials, and dynamic studio lighting.",
+      "Secured First Place as part of a 3-member team in the national-level Flinders University AI Competition. Designed an AI-powered interview preparation bot addressing real student interview challenges.",
     longDescription:
-      "Chronos uses synchronous HTML5 Canvas scrubbing tied to inertial scrolling. With 180 preloaded micro-frames and dynamic ambient occlusions, users deconstruct a tourbillon movement smoothly across mobile and desktop.",
+      "Awarded top honors among university contenders. Architected the conversational evaluation rubric, prompt chaining, and Groq API backend integration that assesses students' speech clarity, technical depth, and confidence during mock placement interviews.",
+    features: [
+      "First place winner in competitive AI hackathon with 3-member team",
+      "Integrated Groq API for instantaneous response times during mock interview evaluations",
+      "Structured rubrics evaluating both soft skills and technical competency",
+    ],
     metrics: [
-      { label: "Frames Scrubbed", value: "180 Frames" },
-      { label: "First Contentful Paint", value: "0.4s" },
-      { label: "Accolade", value: "FWA of the Day" },
+      { label: "Award", value: "1st Place Winner" },
+      { label: "Organizer", value: "Flinders Univ" },
+      { label: "Core API", value: "Groq LLM" },
+    ],
+    accentGradient: "from-amber-500/25 via-yellow-500/10 to-transparent",
+    demoUrl: "https://prepbotvk.netlify.app/",
+    githubUrl: "https://github.com",
+    featured: true,
+  },
+  {
+    id: "sentiment-classification",
+    title: "Customer Review Sentiment Classifier",
+    tagline: "NLP Sentiment Classification Engine",
+    category: "Machine Learning / NLP",
+    year: "2024",
+    tags: [
+      "Python",
+      "Machine Learning",
+      "NLP",
+      "Kaggle Dataset",
+      "Frontend Integration",
+    ],
+    description:
+      "Trained an end-to-end Machine Learning model to classify customer product reviews as positive or negative with ~78% accuracy on Kaggle benchmark datasets.",
+    longDescription:
+      "Built a data processing and inference pipeline for sentiment analysis. Cleaned, tokenized, and vectorized customer feedback corpora, evaluated multiple classification models to reach ~78% accuracy, and contributed to frontend development for live sentiment prediction visualization.",
+    features: [
+      "Achieved ~78% test accuracy on Kaggle product review corpus",
+      "Custom text preprocessing, tokenization, and feature extraction pipeline",
+      "Frontend dashboard integration for real-time sentiment scoring",
+    ],
+    metrics: [
+      { label: "Model Accuracy", value: "~78%" },
+      { label: "Dataset", value: "Kaggle Benchmark" },
+      { label: "Domain", value: "E-Commerce NLP" },
     ],
     accentGradient: "from-emerald-500/20 via-teal-500/10 to-transparent",
-    demoUrl: "https://github.com",
+    demoUrl: "https://prepbotvk.netlify.app/",
     githubUrl: "https://github.com",
     featured: true,
   },
   {
-    id: "hyperion-engine",
-    title: "Hyperion Engine",
-    tagline: "Generative Audio-Visual Reactive Core",
-    category: "Creative Coding",
-    year: "2025",
-    tags: ["Web Audio API", "OffscreenCanvas", "TypeScript", "Web Workers"],
+    id: "portfolio-scrollytelling",
+    title: "Kinetic Scrollytelling Experience",
+    tagline: "High-Performance Next.js 14 Canvas Engine",
+    category: "Full-Stack & Creative Dev",
+    year: "2026",
+    tags: [
+      "Next.js 14",
+      "HTML5 Canvas",
+      "Framer Motion",
+      "TypeScript",
+      "Tailwind CSS",
+    ],
     description:
-      "Interactive generative visualizer driven by Fast Fourier Transform frequency analysis and compute shader-inspired particle systems.",
+      "Awwwards-level interactive portfolio featuring 150 preloaded WebP frames scrubbed synchronously with user scroll, parallax typography, and glassmorphic UI.",
     longDescription:
-      "Hyperion delegates 60,000 particle physics simulations to Web Workers via OffscreenCanvas, ensuring the main browser thread stays completely responsive while rendering reactive kinetic sound sculptures.",
+      "Built with HTML5 Canvas hardware acceleration, responsive object-fit math preventing portrait cropping across widescreen and mobile viewports, spring physics, and full static prerendering.",
+    features: [
+      "150 optimized WebP frames with zero scroll lag or flickering",
+      "Responsive canvas framing preserving subject proportions on any screen",
+      "Real-time trigonometry math wave simulation and Bento Grid",
+    ],
     metrics: [
-      { label: "Active Particles", value: "60,000" },
-      { label: "Audio Latency", value: "< 8ms" },
-      { label: "GitHub Stars", value: "3.4k ★" },
+      { label: "Scrub Rate", value: "60 FPS" },
+      { label: "Sequence", value: "150 Frames" },
+      { label: "Lighthouse", value: "100 / 100" },
     ],
     accentGradient: "from-purple-500/20 via-indigo-500/10 to-transparent",
-    demoUrl: "https://github.com",
-    githubUrl: "https://github.com",
-    featured: false,
-  },
-  {
-    id: "nova-monolith",
-    title: "Nova Monolith",
-    tagline: "High-Performance Editorial Platform",
-    category: "Web Architecture",
-    year: "2025",
-    tags: ["Next.js 14", "Turbopack", "Lenis Smooth Scroll", "Tailwind CSS"],
-    description:
-      "A brutalist, high-performance digital monograph with magnetic cursor physics, kinetic typography, and instantaneous page transitions.",
-    longDescription:
-      "Engineered for sub-50ms navigation times with edge caching, automated image pipeline optimization, and custom spring-driven layout morphs that feel organic and tactile.",
-    metrics: [
-      { label: "Lighthouse Score", value: "100 / 100" },
-      { label: "CLS (Layout Shift)", value: "0.00" },
-      { label: "Awards", value: "CSSDA WOTD" },
-    ],
-    accentGradient: "from-amber-500/20 via-orange-500/10 to-transparent",
-    demoUrl: "https://github.com",
+    demoUrl: "https://prepbotvk.netlify.app/",
     githubUrl: "https://github.com",
     featured: false,
   },
 ];
 
-const CATEGORIES = ["All", "WebGL / Spatial UI", "Scrollytelling / 3D", "Creative Coding", "Web Architecture"];
+const CATEGORIES = [
+  "All",
+  "AI / LLM Application",
+  "Award Winning AI",
+  "Machine Learning / NLP",
+  "Full-Stack & Creative Dev",
+];
 
 export default function Projects() {
   const [activeCategory, setActiveCategory] = useState<string>("All");
@@ -156,15 +213,15 @@ export default function Projects() {
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full glass-pill mb-4 border border-cyan-500/20 text-cyan-400">
               <Sparkles className="w-3.5 h-3.5 text-cyan-400" />
               <span className="text-xs font-mono tracking-widest uppercase">
-                Selected Works
+                Portfolio & Projects
               </span>
             </div>
             <h2 className="text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight text-white uppercase">
-              Curated <span className="text-gradient-accent">Case Studies</span>
+              Featured <span className="text-gradient-accent">Case Studies</span>
             </h2>
             <p className="mt-3 text-base text-white/60 max-w-xl font-light">
-              High-impact digital products, interactive 3D simulations, and
-              custom creative web architectures crafted with relentless attention to detail.
+              From live AI mentorship platforms to machine learning models and
+              award-winning hackathon architectures built by Sharathkumar K M.
             </p>
           </div>
 
@@ -200,27 +257,43 @@ export default function Projects() {
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, scale: 0.95 }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
-                className="group relative rounded-2xl overflow-hidden glass-panel border border-white/10 hover:border-cyan-500/40 transition-all duration-500 flex flex-col justify-between"
+                className={`group relative rounded-2xl overflow-hidden glass-panel border transition-all duration-500 flex flex-col justify-between ${
+                  project.id === "prepbot"
+                    ? "border-cyan-400/40 shadow-[0_0_35px_rgba(56,189,248,0.15)]"
+                    : "border-white/10 hover:border-cyan-500/40"
+                }`}
               >
                 {/* Accent ambient top gradient */}
                 <div
-                  className={`absolute top-0 inset-x-0 h-48 bg-gradient-to-b ${project.accentGradient} opacity-50 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none`}
+                  className={`absolute top-0 inset-x-0 h-48 bg-gradient-to-b ${project.accentGradient} opacity-60 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none`}
                 />
 
                 {/* Card Content */}
                 <div className="p-7 sm:p-9 relative z-10 flex flex-col h-full justify-between">
                   <div>
-                    {/* Top Row: Category + Year */}
+                    {/* Top Row: Category + Highlight */}
                     <div className="flex items-center justify-between text-xs font-mono mb-4 text-white/50">
-                      <span className="text-cyan-400/90 tracking-widest uppercase">
+                      <span className="text-cyan-400/90 tracking-widest uppercase flex items-center gap-1.5">
+                        {project.id === "prepbot" && (
+                          <Bot className="w-3.5 h-3.5 text-cyan-400" />
+                        )}
+                        {project.id === "flinders-ai-winner" && (
+                          <Trophy className="w-3.5 h-3.5 text-amber-400" />
+                        )}
                         {project.category}
                       </span>
-                      <span>{project.year}</span>
+                      {project.highlightLabel ? (
+                        <span className="px-2.5 py-0.5 rounded-full text-[10px] font-mono bg-cyan-400/20 text-cyan-300 border border-cyan-400/30">
+                          {project.highlightLabel}
+                        </span>
+                      ) : (
+                        <span>{project.year}</span>
+                      )}
                     </div>
 
                     {/* Project Title */}
-                    <h3 className="text-2xl sm:text-3xl font-bold text-white tracking-tight group-hover:text-cyan-300 transition-colors">
-                      {project.title}
+                    <h3 className="text-2xl sm:text-3xl font-bold text-white tracking-tight group-hover:text-cyan-300 transition-colors flex items-center gap-2">
+                      <span>{project.title}</span>
                     </h3>
                     <p className="text-xs font-mono text-white/50 mt-1 uppercase tracking-wider">
                       {project.tagline}
@@ -260,13 +333,24 @@ export default function Projects() {
                       ))}
                     </div>
 
-                    {/* Detail trigger */}
+                    {/* Action buttons */}
                     <div className="flex items-center gap-2">
+                      {project.id === "prepbot" && (
+                        <a
+                          href="https://prepbotvk.netlify.app/"
+                          target="_blank"
+                          rel="noreferrer"
+                          className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-xs font-mono font-bold bg-cyan-400 hover:bg-cyan-300 text-[#080d0e] transition-all shadow-[0_0_15px_rgba(56,189,248,0.3)]"
+                        >
+                          <span>Live Site</span>
+                          <ExternalLink className="w-3.5 h-3.5" />
+                        </a>
+                      )}
                       <button
                         onClick={() => setSelectedProject(project)}
-                        className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl text-xs font-mono font-medium text-white glass-pill hover:bg-white/10 hover:text-cyan-300 transition-all cursor-pointer"
+                        className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-xs font-mono font-medium text-white glass-pill hover:bg-white/10 hover:text-cyan-300 transition-all cursor-pointer"
                       >
-                        <span>Case Study</span>
+                        <span>Details</span>
                         <ArrowUpRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
                       </button>
                     </div>
@@ -337,31 +421,25 @@ export default function Projects() {
                     <span className="text-[10px] font-mono text-white/40 block">
                       {metric.label}
                     </span>
-                    <span className="text-base font-bold text-white font-mono mt-0.5 block">
+                    <span className="text-sm font-bold text-white font-mono mt-0.5 block truncate">
                       {metric.value}
                     </span>
                   </div>
                 ))}
               </div>
 
-              {/* Architecture highlights */}
+              {/* Key Highlights list */}
               <div className="mb-6">
                 <h4 className="text-xs font-mono text-white/50 uppercase tracking-widest mb-3">
-                  Key Technical Capabilities
+                  Technical Architecture & Accomplishments
                 </h4>
                 <ul className="space-y-2 text-xs text-white/80">
-                  <li className="flex items-center gap-2">
-                    <CheckCircle2 className="w-3.5 h-3.5 text-cyan-400 shrink-0" />
-                    <span>Hardware-accelerated rendering with custom shader passes</span>
-                  </li>
-                  <li className="flex items-center gap-2">
-                    <CheckCircle2 className="w-3.5 h-3.5 text-cyan-400 shrink-0" />
-                    <span>60 FPS performance envelope across desktop and mobile devices</span>
-                  </li>
-                  <li className="flex items-center gap-2">
-                    <CheckCircle2 className="w-3.5 h-3.5 text-cyan-400 shrink-0" />
-                    <span>Zero layout shift, fully accessible semantic DOM layering</span>
-                  </li>
+                  {selectedProject.features.map((feat, idx) => (
+                    <li key={idx} className="flex items-start gap-2">
+                      <CheckCircle2 className="w-3.5 h-3.5 text-cyan-400 shrink-0 mt-0.5" />
+                      <span>{feat}</span>
+                    </li>
+                  ))}
                 </ul>
               </div>
 
@@ -374,7 +452,11 @@ export default function Projects() {
                   className="flex-1 inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-cyan-400 hover:bg-cyan-300 text-[#080d0e] font-semibold text-xs tracking-wider uppercase transition-all shadow-[0_0_20px_rgba(56,189,248,0.3)]"
                 >
                   <ExternalLink className="w-4 h-4" />
-                  <span>Launch Live Demo</span>
+                  <span>
+                    {selectedProject.id === "prepbot"
+                      ? "Open PrepBot (prepbotvk.netlify.app)"
+                      : "Launch Live Demo"}
+                  </span>
                 </a>
                 <a
                   href={selectedProject.githubUrl}
@@ -383,7 +465,7 @@ export default function Projects() {
                   className="inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl glass-pill text-white/80 hover:text-white text-xs font-mono transition-all"
                 >
                   <GithubIcon className="w-4 h-4" />
-                  <span>Source Code</span>
+                  <span>GitHub</span>
                 </a>
               </div>
             </motion.div>
